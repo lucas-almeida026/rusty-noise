@@ -20,7 +20,7 @@ impl BrowNoise {
 impl NoiseGenerator for BrowNoise {
     fn next_sample(&mut self) -> f32 {
         let white = rand::random::<f32>() * 2.0 - 1.0;
-        self.last += white * 0.05;
+        self.last += white * 0.015;
         self.last = self.last.clamp(-1.0, 1.0);
         self.last
     }
