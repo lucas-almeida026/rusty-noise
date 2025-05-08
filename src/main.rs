@@ -5,7 +5,6 @@ mod noise;
 use noise::*;
 
 mod cli;
-use cli::*;
 
 fn build_audio_stream<T>(
     device: &cpal::Device,
@@ -87,5 +86,5 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     loop {
         std::thread::sleep(std::time::Duration::from_secs(1));
     }
-    Ok(())
+    //Ok(())
 }

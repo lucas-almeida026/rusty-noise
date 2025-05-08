@@ -1,7 +1,7 @@
 use clap::Parser;
 
 #[derive(Parser, Debug)]
-#[command(version, about, long_about = None)]
+#[command(version, about = "A simple noise generator in Rust.", long_about = None)]
 pub struct Args {
 	/// White noise volume (0-100)
 	#[arg(short = 'w', num_args(0..=1), long, default_missing_value = "0", default_value_t = 0.0)]
