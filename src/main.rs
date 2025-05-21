@@ -60,13 +60,12 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         .expect("no output device found");
     let config = device.default_output_config()?;
 
-    let master_volume =
-        clamp_as_percentage(args.master_volume) / 10.0;
+    let master_volume = clamp_as_percentage(args.master_volume) / 10.0;
     let generators = vec![
         ControlledNoise::new(NoiseType::Brown, clamp_as_percentage(args.brown) * 33.0),
         ControlledNoise::new(NoiseType::Pink, clamp_as_percentage(args.pink)),
         ControlledNoise::new(NoiseType::White, clamp_as_percentage(args.white)),
-        ControlledNoise::new(NoiseType::Blue, clamp_as_percentage(args.blue))
+        ControlledNoise::new(NoiseType::Blue, clamp_as_percentage(args.blue)),
     ];
 
     let stream = match config.sample_format() {
@@ -83,6 +82,11 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     };
     stream.play()?;
 
+    println!("Playing noise at: {}% volume", args.master_volume);
+    println!("\twhite noise at: {}% volume", args.white);
+    println!("\tpink noise at: {}% volume", args.pink);
+    println!("\tblue noise at: {}% volume", args.blue);
+    println!("\tbrown noise at: {}% volume", args.brown);
     loop {
         std::thread::sleep(std::time::Duration::from_secs(1));
     }
